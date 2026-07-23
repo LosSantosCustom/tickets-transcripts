@@ -1,0 +1,455 @@
+
+            <html>
+            <head>
+            <meta charset='utf-8'>
+            <style>
+            body{
+                margin:0;
+                padding:20px;
+                background:#313338;
+                color:#dbdee1;
+                font-family:gg sans, "Segoe UI", Helvetica, Arial, sans-serif;
+                font-size:16px;
+                line-height:1.375;
+            }
+
+            h1{
+                text-align:center;
+                color:white;
+                margin-bottom:25px;
+            }
+
+            hr{
+                border:none;
+                border-top:1px solid #444;
+                margin-bottom:25px;
+            }
+
+            /* -------------------- */
+            /* Messages */
+            /* -------------------- */
+
+            .message{
+                display:flex;
+                padding:8px 16px;
+                transition:.15s;
+            }
+
+            .message:hover{
+                background:#2e3035;
+            }
+
+            .avatar{
+                width:40px;
+                height:40px;
+                border-radius:50%;
+                margin-right:16px;
+                flex-shrink:0;
+            }
+
+            .content{
+                flex:1;
+                min-width:0;
+            }
+
+            .author{
+                font-weight:600;
+                font-size:16px;
+            }
+
+            .username{
+                color:#949ba4;
+                font-size:13px;
+                margin-left:5px;
+            }
+
+            .timestamp{
+                color:#949ba4;
+                font-size:12px;
+                margin-left:8px;
+            }
+
+            .text{
+                margin-top:3px;
+                white-space:pre-wrap;
+                word-break:break-word;
+            }
+
+            /* -------------------- */
+            /* Mentions */
+            /* -------------------- */
+
+            .mention{
+                display:inline-block;
+                padding:1px 4px;
+                border-radius:4px;
+                font-weight:500;
+                cursor:pointer;
+            }
+
+            .mention.user{
+                background:rgba(88,101,242,.30);
+                color:#c9cdfb;
+            }
+
+            .mention.user:hover{
+                background:#5865F2;
+                color:white;
+            }
+
+            .mention.channel{
+                background:rgba(88,101,242,.20);
+                color:#c9cdfb;
+            }
+
+            .mention.channel:hover{
+                background:#5865F2;
+                color:white;
+            }
+
+            .mention.role{
+                background:color-mix(in srgb,var(--mention-color) 20%,transparent);
+                color:var(--mention-color);
+            }
+
+            .mention.role:hover{
+                background:var(--mention-color);
+                color:white;
+            }
+
+            /* -------------------- */
+            /* Markdown */
+            /* -------------------- */
+
+            b{
+                font-weight:700;
+            }
+
+            i{
+                font-style:italic;
+            }
+
+            u{
+                text-decoration:underline;
+            }
+
+            s{
+                text-decoration:line-through;
+            }
+
+            code{
+                background:#1e1f22;
+                border-radius:4px;
+                padding:2px 5px;
+                font-size:14px;
+                font-family:Consolas, monospace;
+            }
+
+            pre{
+                background:#1e1f22;
+                border-radius:8px;
+                padding:12px;
+                overflow:auto;
+                margin-top:6px;
+            }
+
+            pre code{
+                background:none;
+                padding:0;
+            }
+
+            blockquote{
+                border-left:4px solid #4e5058;
+                padding-left:12px;
+                margin:5px 0;
+                color:#b5bac1;
+            }
+
+            a{
+                color:#00a8fc;
+                text-decoration:none;
+            }
+
+            a:hover{
+                text-decoration:underline;
+            }
+
+            /* -------------------- */
+            /* Spoilers */
+            /* -------------------- */
+
+            /* -------------------- */
+            /* Spoilers Discord */
+            /* -------------------- */
+
+            .spoiler{
+                background:#202225;
+                color:transparent;
+                border-radius:4px;
+                padding:2px 6px;
+                cursor:pointer;
+                user-select:none;
+                transition:.15s;
+            }
+
+            .spoiler:hover{
+                background:#1a1b1e;
+            }
+
+            .spoiler.revealed{
+                background:#202225;
+                color:#dbdee1;
+            }
+
+            /* -------------------- */
+            /* Images */
+            /* -------------------- */
+
+            .attachment{
+                margin-top:10px;
+            }
+
+            .attachment img{
+                max-width:400px;
+                border-radius:8px;
+            }
+
+            /* -------------------- */
+            /* Embeds */
+            /* -------------------- */
+
+            .embed{
+                margin-top:10px;
+                background:#2b2d31;
+                border-left:4px solid;
+                border-radius:4px;
+                padding:12px;
+                max-width:520px;
+            }
+
+            .embed-title{
+                font-weight:700;
+                color:white;
+                margin-bottom:6px;
+            }
+
+            .embed-description{
+                color:#dbdee1;
+                white-space:pre-wrap;
+            }
+
+            .embed-field{
+                margin-top:10px;
+            }
+
+            .embed-field-name{
+                color:white;
+                font-weight:600;
+                margin-bottom:3px;
+            }
+
+            .embed-field-value{
+                color:#dbdee1;
+                white-space:pre-wrap;
+            }
+
+            .embed-footer{
+                margin-top:10px;
+                color:#949ba4;
+                font-size:12px;
+            }
+
+            /* -------------------- */
+            /* Sélection */
+            /* -------------------- */
+
+            ::selection{
+                background:#5865F2;
+                color:white;
+            }
+            .emoji{
+                width:22px;
+                height:22px;
+                vertical-align:-5px;
+                object-fit:contain;
+            }
+
+            .emoji.animated{
+                width:22px;
+                height:22px;
+            }
+            .system-message{
+                text-align:center;
+                color:#949ba4;
+                font-size:14px;
+                font-style:italic;
+                padding:20px 0;
+            }
+
+            .user-click{
+                cursor:pointer;
+            }
+
+            .user-click:hover{
+                text-decoration:underline;
+            }
+
+
+            .user-popup{
+                display:none;
+                position:fixed;
+                inset:0;
+                background:rgba(0,0,0,.6);
+                justify-content:center;
+                align-items:center;
+                z-index:999;
+            }
+
+
+            .popup-content{
+                background:#2b2d31;
+                padding:25px;
+                border-radius:12px;
+                width:320px;
+                color:white;
+                position:relative;
+            }
+
+
+            .popup-avatar{
+                width:90px;
+                height:90px;
+                border-radius:50%;
+            }
+
+
+            .close-popup{
+                position:absolute;
+                right:15px;
+                top:10px;
+                cursor:pointer;
+            }
+            </style>
+            <title>Transcript de plainte-lyxeeee_</title>
+            </head>
+            <body>
+            <h1>Transcript de #plainte-lyxeeee_</h1>
+            <hr>
+            
+                <div class='message'>
+                <img src='https://cdn.discordapp.com/avatars/1513094774457106514/38e53366751bec422a5e02bc687f36fd.png?size=1024' class='avatar'>
+                <div class='content'>
+                    <span class='author' data-color style='color: #ffffff;'>
+                    <span class="user-click" data-id="1513094774457106514">
+                        Los Santos Custom
+                    </span>
+                    <span class='username'>(Los Santos Custom#2286 | ID : 1513094774457106514)</span>
+                    </span>
+                    <span class='timestamp'>23/07/2026 23:48:31</span>
+                    <div class='text'><span class='mention user user-click' data-id='705886649845809154' style='--mention-color:#e74c3c;'>@Lyxe</span></div>
+                <div class='embed' style='border-left-color:#ffffff;'><div class='embed-title'>Ticket ouvert par lyxeeee_</div><div class='embed-description'>Merci, <code>lyxeeee_</code>, d&#x27;avoir ouvert un ticket plainte. Un haut gradé vous répondra rapidement !<br><b><u>PING = TICKET FERMÉ</u></b></div><div class='embed-footer'>23/07/2026, 23:48:31</div></div>
+                </div>
+                </div>
+                
+                    <div class="message">
+                        <div class="content">
+                            <div class="system-message">
+                                📌 <b>Un message a été épinglé dans ce salon.</b>
+                            </div>
+                        </div>
+                    </div>
+                    
+                <div class='message'>
+                <img src='https://cdn.discordapp.com/avatars/705886649845809154/082956235aeff6a615b05f26db0e696f.png?size=1024' class='avatar'>
+                <div class='content'>
+                    <span class='author' data-color style='color: #e74c3c;'>
+                    <span class="user-click" data-id="705886649845809154">
+                        Lyxe
+                    </span>
+                    <span class='username'>(lyxeeee_ | ID : 705886649845809154)</span>
+                    </span>
+                    <span class='timestamp'>23/07/2026 23:48:34</span>
+                    <div class='text'>rs</div>
+                
+                </div>
+                </div>
+                
+            <script>
+            document.querySelectorAll('.spoiler').forEach(spoiler => {
+                spoiler.addEventListener('click', () => {
+                    spoiler.classList.toggle('revealed');
+                });
+            });
+            </script>
+
+            <div id="userPopup" class="user-popup">
+                <div class="popup-content">
+                    <span class="close-popup" onclick="closeUser()">✖</span>
+
+                    <img id="popupAvatar" class="popup-avatar">
+
+                    <h2 id="popupDisplay"></h2>
+                    <p id="popupUsername"></p>
+
+                    <h3>Rôles</h3>
+                    <div id="popupRoles"></div>
+                </div>
+            </div>
+            <script>
+
+            const users = {json.dumps(users_data)};
+
+
+            function showUser(id){
+
+                const user = users[id];
+
+                if(!user){
+                    console.log("Utilisateur introuvable :", id);
+                    return;
+                }
+
+
+                document.getElementById("popupAvatar").src = user.avatar;
+
+                document.getElementById("popupDisplay").innerHTML =
+                    user.display;
+
+                document.getElementById("popupUsername").innerHTML =
+                    user.username;
+
+                document.getElementById("popupRoles").innerHTML =
+                    user.roles.length
+                    ? user.roles.map(r => "• " + r).join("<br>")
+                    : "Aucun rôle";
+
+
+                document.getElementById("userPopup").style.display = "flex";
+            }
+
+
+
+            function closeUser(){
+
+                document.getElementById("userPopup").style.display="none";
+
+            }
+
+
+
+            document.querySelectorAll(".user-click").forEach(element => {
+
+                element.addEventListener("click", () => {
+
+                    showUser(element.dataset.id);
+
+                });
+
+            });
+
+
+            </script>
+
+            </body>
+            </html>
+            
